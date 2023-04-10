@@ -21,13 +21,14 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import kotlin.jvm.internal.unsafe.MonitorKt;
 
 public class MainActivity extends AppCompatActivity {
 
     EditText edit1, edit2;
-    Button btnAdd, btnSub, btnMul, btnDiv;
+    Button btnAdd, btnSub, btnMul, btnDiv, btnTemp;
     TextView textResult;
     String num1, num2;
     Integer result;
@@ -48,52 +49,104 @@ public class MainActivity extends AppCompatActivity {
         btnSub = (Button) findViewById(R.id.BtnSub);
         btnMul = (Button) findViewById(R.id.BtnMul);
         btnDiv = (Button) findViewById(R.id.BtnDiv);
+        btnTemp = (Button) findViewById(R.id.BtnTemp);
 
         textResult = (TextView) findViewById(R.id.TextResult);
 
-        btnAdd.setOnTouchListener(new View.OnTouchListener(){
-            public boolean onTouch(View arg0, MotionEvent arg1){
+        btnAdd.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
                 num1 = edit1.getText().toString();
                 num2 = edit2.getText().toString();
-                result = Integer.parseInt(num1) + Integer.parseInt(num2);
-                textResult.setText("계산 결과: " + result.toString());
-                return false;
+
+                if (edit1.getText().toString().length() == 0 ||
+                        edit2.getText().toString().length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    textResult.setText("계산 결과: none");
+                }
+                else
+                {
+                    result = Integer.parseInt(num1) + Integer.parseInt(num2);
+                    textResult.setText("계산 결과: " + result.toString());
                 }
             }
-        );
+        });
 
-        btnSub.setOnTouchListener(new View.OnTouchListener(){
-            public boolean onTouch(View arg0, MotionEvent arg1){
-                 num1 = edit1.getText().toString();
-                 num2 = edit2.getText().toString();
-                 result = Integer.parseInt(num1) - Integer.parseInt(num2);
-                 textResult.setText("계산 결과: " + result.toString());
-                 return false;
+        btnSub.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                num1 = edit1.getText().toString();
+                num2 = edit2.getText().toString();
+
+                if (edit1.getText().toString().length() == 0 ||
+                        edit2.getText().toString().length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    textResult.setText("계산 결과: none");
+                }
+                else
+                {
+                    result = Integer.parseInt(num1) - Integer.parseInt(num2);
+                    textResult.setText("계산 결과: " + result.toString());
                 }
             }
-        );
+        });
 
-        btnMul.setOnTouchListener(new View.OnTouchListener(){
-            public boolean onTouch(View arg0, MotionEvent arg1){
-                    num1 = edit1.getText().toString();
-                    num2 = edit2.getText().toString();
+        btnMul.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                num1 = edit1.getText().toString();
+                num2 = edit2.getText().toString();
+
+                if (edit1.getText().toString().length() == 0 ||
+                        edit2.getText().toString().length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    textResult.setText("계산 결과: none");
+                }
+                else
+                {
                     result = Integer.parseInt(num1) * Integer.parseInt(num2);
                     textResult.setText("계산 결과: " + result.toString());
-                    return false;
                 }
             }
-        );
+        });
 
-        btnAdd.setOnTouchListener(new View.OnTouchListener(){
-            public boolean onTouch(View arg0, MotionEvent arg1){
-                    num1 = edit1.getText().toString();
-                    num2 = edit2.getText().toString();
+        btnDiv.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                num1 = edit1.getText().toString();
+                num2 = edit2.getText().toString();
+
+                if (edit1.getText().toString().length() == 0 ||
+                        edit2.getText().toString().length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    textResult.setText("계산 결과: none");
+                }
+                else
+                {
                     result = Integer.parseInt(num1) / Integer.parseInt(num2);
                     textResult.setText("계산 결과: " + result.toString());
-                    return false;
                 }
             }
-        );
+        });
+
+        btnTemp.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                num1 = edit1.getText().toString();
+                num2 = edit2.getText().toString();
+
+                if (edit1.getText().toString().length() == 0 ||
+                        edit2.getText().toString().length() == 0)
+                {
+                    Toast.makeText(getApplicationContext(), "값을 입력하세요.", Toast.LENGTH_SHORT).show();
+                    textResult.setText("계산 결과: none");
+                }
+                else
+                {
+                    result = Integer.parseInt(num1) % Integer.parseInt(num2);
+                    textResult.setText("계산 결과: " + result.toString());
+                }
+            }
+        });
 
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
